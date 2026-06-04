@@ -11,7 +11,7 @@ const cards = [
     label: "Структура",
     num: "02",
     title: "Комбо и наборы",
-    text: "«Больше за меньшие деньги» — готовые решения для семьи, компании, обеда или детского стола.",
+    text: "«Больше за меньшие деньги» — готовые решения для семьи, компании, обеда или детского стола. Разнообразие цен за счёт размеров, порций и состава.",
     highlight: true,
   },
   {
@@ -27,7 +27,7 @@ const cards = [
     label: "Гибкость",
     num: "03",
     title: "Региональная адаптация",
-    text: "Цены адаптируются под локальную экономику. Акции рассчитываются с фокусом на маржинальность.",
+    text: "Цены адаптируются под покупательскую способность в каждом регионе присутствия. Акции рассчитываются с фокусом на маржинальность.",
     highlight: false,
   },
 ];
@@ -91,7 +91,7 @@ export default function Price() {
               >
                 {main.title}
               </h3>
-              <p className="text-sm text-white/55 group-hover:text-white/80 leading-relaxed transition-colors duration-300 max-w-xs">
+              <p className="text-sm text-white/55 group-hover:text-white/80 leading-relaxed transition-colors duration-300 max-w-sm">
                 {main.text}
               </p>
             </div>

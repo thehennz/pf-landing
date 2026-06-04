@@ -14,10 +14,13 @@ const positioning = [
 ];
 
 const products = [
-  { Icon: IconPizza,  title: "Пицца",                  badge: "Ключевая категория", text: "Главный драйвер продаж. Три размера, классика и актуальные новинки. Регулярное обновление ассортимента.",      tier: "primary" },
-  { Icon: IconRoll,   title: "Роллы",                  badge: "2-я по значимости",  text: "Ключевые вкусовые предпочтения. Тренды. Доступный ценовой сегмент.",                           tier: "primary" },
+  { Icon: IconPizza,  title: "Пицца",                  badge: "Ключевая категория", text: "Главный драйвер продаж. Три размера, классика и актуальные новинки. Регулярное обновление ассортимента.",      tier: "primary",
+    points: ["Высококачественное тесто", "Тянущийся сыр от надёжных поставщиков", "Только проверенные ингредиенты"] },
+  { Icon: IconRoll,   title: "Роллы",                  badge: "2-я по значимости",  text: "Ключевые вкусовые предпочтения. Тренды. Доступный ценовой сегмент.",                           tier: "primary",
+    points: ["Простой и понятный вкус", "Свежесть продукта", "Часто заказывается как дополнение к пицце", "Визуальная подача"] },
   { Icon: IconHot,    title: "Горячие блюда",          badge: null,                 text: "Расширяет меню для тех, кто хочет полноценный горячий обед. Стабильное качество и стандарты.",                   tier: "secondary" },
-  { Icon: IconFries,  title: "Стритфуд",               badge: null,                 text: "Картофель фри, наггетсы и другие бестселлеры. Идеально как дополнение к основному заказу.",                    tier: "secondary" },
+  { Icon: IconFries,  title: "Стритфуд",               badge: null,                 text: "Картофель фри, наггетсы и другие бестселлеры. Идеально как дополнение к основному заказу.",                    tier: "secondary",
+    points: ["Простой и понятный продукт", "Стабильное качество", "Повышенный контроль качества"] },
   { Icon: IconSnack,  title: "Закуски",                badge: null,                 text: "Лёгкие и быстрые позиции — для компании, офиса или дополнения к основному блюду.",                              tier: "secondary" },
   { Icon: IconSalad,  title: "Салаты",                 badge: null,                 text: "Свежие и лёгкие позиции для тех, кто ценит баланс в питании.",                                              tier: "secondary" },
 ];
@@ -219,100 +222,6 @@ export default function Product() {
       {/* Упаковка как часть продукта */}
       <PackagingBlock />
 
-      {/* Products — large cards */}
-      <div className="px-6 md:px-14 py-20 md:py-28 bg-[#F8F8F8] border-b border-black">
-        <SectionLabel label="Ассортимент" title={<>Продуктовая <Accent>матрица</Accent></>} lead="Всё в одном месте — для семьи, офиса, компании или индивидуального заказа." />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-black border border-black">
-          {products.map((p, i) => {
-            const isPrimary = p.tier === "primary";
-            return (
-            <FadeIn key={p.title} delay={i * 0.07}>
-              <div className={`group cursor-default h-full flex flex-col transition-colors duration-500 relative overflow-hidden p-8 md:p-10
-                ${isPrimary
-                  ? "bg-black hover:bg-[#FF0000] min-h-[320px]"
-                  : "bg-[#F8F8F8] hover:bg-black min-h-[240px]"
-                }`}>
-
-                {/* Top: badge + number */}
-                <div className="flex items-start justify-between mb-auto">
-                  {p.badge
-                    ? <span className={`text-[11px] font-bold tracking-wider uppercase px-4 py-2 transition-colors duration-300
-                        ${isPrimary ? "bg-white/15 text-white group-hover:bg-white/25" : "bg-black text-white group-hover:bg-white group-hover:text-black"}`}>
-                        {p.badge}
-                      </span>
-                    : <span />
-                  }
-                  <span className={`font-black tabular-nums leading-none transition-colors duration-300
-                    ${isPrimary ? "text-white/20 group-hover:text-white/30" : "text-black/10 group-hover:text-white/20"}`}
-                    style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-
-                {/* Icon — фоновый элемент справа */}
-                <div className="absolute -right-12 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <p.Icon className={`transition-all duration-500
-                    ${isPrimary ? "text-white/10 group-hover:text-white/15" : "text-black/6 group-hover:text-white/10"}
-                    ${isPrimary ? "w-44 h-44 md:w-52 md:h-52" : "w-36 h-36 md:w-40 md:h-40"}`} />
-                </div>
-
-                {/* Bottom: title + text */}
-                <div className="mt-auto relative z-10">
-                  <h3 className={`font-black uppercase leading-none mb-3 transition-colors duration-300
-                    ${isPrimary ? "text-white" : "text-black/60 group-hover:text-white"}`}
-                    style={{
-                      fontFamily: "Arial, sans-serif",
-                      fontSize: isPrimary ? "clamp(2.4rem, 4.5vw, 3.8rem)" : "clamp(1.4rem, 2.5vw, 2.2rem)",
-                      letterSpacing: "-0.03em"
-                    }}>
-                    {p.title}
-                  </h3>
-                  <p className={`text-xs leading-relaxed transition-colors duration-300
-                    ${isPrimary ? "text-white/45 group-hover:text-white/80" : "text-black/35 group-hover:text-white/55"}`}>
-                    {p.text}
-                  </p>
-                </div>
-
-              </div>
-            </FadeIn>
-            );
-          })}
-        </div>
-        {/* Детское меню — отдельный акцентный блок */}
-        <FadeIn delay={0.3}>
-          <div className="border border-t-0 border-black bg-[#FFC800] group cursor-default hover:bg-[#FF0000] transition-colors duration-500 relative overflow-hidden">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 p-8 md:p-12 relative z-10">
-
-              {/* Left: label + title */}
-              <div className="flex-1">
-                <span className="inline-block text-[11px] font-bold tracking-wider uppercase bg-black text-white px-4 py-2 mb-5 group-hover:bg-white group-hover:text-black transition-colors duration-300">
-                  Наша отличительная черта
-                </span>
-                <h3
-                  className="font-black uppercase leading-none text-black group-hover:text-white transition-colors duration-500 mb-4"
-                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(2.4rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}
-                >
-                  Детское меню
-                </h3>
-                <p className="text-sm text-black/60 group-hover:text-white/60 leading-relaxed max-w-lg transition-colors duration-300">
-                  Специальные позиции, разработанные для детей. Строгий контроль качества
-                  и безопасности состава — родитель спокоен, ребёнок доволен.
-                  Детские зоны в каждом ресторане.
-                </p>
-              </div>
-
-            </div>
-
-            {/* Фоновая иконка */}
-            <div className="absolute -right-8 top-1/2 -translate-y-1/2 pointer-events-none">
-              <IconChild className="w-48 h-48 md:w-64 md:h-64 text-black/8 group-hover:text-white/8 transition-colors duration-500" />
-            </div>
-          </div>
-        </FadeIn>
-
-      </div>
-
       {/* Под любую ситуацию */}
       <div className="border-b border-black">
         <div className="px-6 md:px-14 pt-20 md:pt-28 pb-0">
@@ -362,15 +271,12 @@ export default function Product() {
                 transition={{ duration: 0.65, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className={`${s.bg} group cursor-default hover:bg-black transition-colors duration-500 relative overflow-hidden min-h-[280px] md:min-h-[320px] flex flex-col justify-between p-8 md:p-12`}
               >
-                {/* Watermark number */}
                 <div
                   className={`absolute -bottom-4 -right-2 font-black leading-none pointer-events-none select-none transition-colors duration-500 ${s.dark ? "text-white/6 group-hover:text-white/8" : "text-black/5 group-hover:text-white/6"}`}
                   style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(8rem, 16vw, 14rem)" }}
                 >
                   {s.num}
                 </div>
-
-                {/* Bottom: title + desc */}
                 <div className="relative z-10">
                   <motion.h3
                     initial={{ opacity: 0, y: 20 }}
@@ -389,6 +295,116 @@ export default function Product() {
             );
           })}
         </div>
+      </div>
+
+      {/* Products — large cards */}
+      <div className="px-6 md:px-14 py-20 md:py-28 bg-[#F8F8F8] border-b border-black">
+        <SectionLabel label="Ассортимент" title={<>Продуктовая <Accent>матрица</Accent></>} lead="Всё в одном месте — для семьи, офиса, компании или индивидуального заказа." />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-black border border-black">
+          {products.map((p, i) => {
+            const isPrimary = p.tier === "primary";
+            return (
+            <FadeIn key={p.title} delay={i * 0.07}>
+              <div className={`group cursor-default h-full flex flex-col transition-colors duration-500 relative overflow-hidden p-8 md:p-10
+                ${isPrimary
+                  ? "bg-black hover:bg-[#FF0000] min-h-[320px]"
+                  : "bg-[#F8F8F8] hover:bg-black min-h-[280px]"
+                }`}>
+
+                <div className="flex items-start justify-between h-10 shrink-0">
+                  {p.badge
+                    ? <span className={`text-[11px] font-bold tracking-wider uppercase px-4 py-2 transition-colors duration-300 self-start
+                        ${isPrimary ? "bg-white/15 text-white group-hover:bg-white/25" : "bg-black text-white group-hover:bg-white group-hover:text-black"}`}>
+                        {p.badge}
+                      </span>
+                    : <span />
+                  }
+                  <span className={`font-black tabular-nums leading-none transition-colors duration-300
+                    ${isPrimary ? "text-white/20 group-hover:text-white/30" : "text-black/10 group-hover:text-white/20"}`}
+                    style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="absolute -right-12 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <p.Icon className={`transition-all duration-500
+                    ${isPrimary ? "text-white/10 group-hover:text-white/15" : "text-black/6 group-hover:text-white/10"}
+                    ${isPrimary ? "w-44 h-44 md:w-52 md:h-52" : "w-36 h-36 md:w-40 md:h-40"}`} />
+                </div>
+
+                <div className="flex-1" />
+
+                <div className="relative z-10">
+                  <h3 className={`font-black uppercase leading-none mb-3 transition-colors duration-300
+                    ${isPrimary ? "text-white" : "text-black/60 group-hover:text-white"}`}
+                    style={{
+                      fontFamily: "Arial, sans-serif",
+                      fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+                      letterSpacing: "-0.03em"
+                    }}>
+                    {p.title}
+                  </h3>
+
+                  <div className="relative min-h-[4rem]">
+                    {'points' in p && p.points ? (
+                      <>
+                        <p className={`text-xs leading-relaxed transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-2
+                          ${isPrimary ? "text-white/45" : "text-black/35"}`}>
+                          {p.text}
+                        </p>
+                        <ul className="absolute inset-0 flex flex-col gap-1.5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                          {p.points.map((point: string, pi: number) => (
+                            <li key={pi}
+                              className="flex items-start gap-2 text-xs leading-snug text-white"
+                              style={{ transitionDelay: `${pi * 60}ms` }}>
+                              <span className="shrink-0 mt-0.5 w-3 h-px bg-white/60 inline-block translate-y-[5px]" />
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : (
+                      <p className={`text-xs leading-relaxed transition-colors duration-300
+                        ${isPrimary ? "text-white/45 group-hover:text-white/80" : "text-black/35 group-hover:text-white/55"}`}>
+                        {p.text}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            </FadeIn>
+            );
+          })}
+        </div>
+        {/* Детское меню — отдельный акцентный блок */}
+        <FadeIn delay={0.3}>
+          <div className="border border-t-0 border-black bg-[#FFC800] group cursor-default hover:bg-[#FF0000] transition-colors duration-500 relative overflow-hidden">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 p-8 md:p-12 relative z-10">
+              <div className="flex-1">
+                <span className="inline-block text-[11px] font-bold tracking-wider uppercase bg-black text-white px-4 py-2 mb-5 group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                  Наша отличительная черта
+                </span>
+                <h3
+                  className="font-black uppercase leading-none text-black group-hover:text-white transition-colors duration-500 mb-4"
+                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(2.4rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}
+                >
+                  Детское меню
+                </h3>
+                <p className="text-sm text-black/60 group-hover:text-white/60 leading-relaxed max-w-lg transition-colors duration-300">
+                  Специальные позиции, разработанные для детей. Строгий контроль качества
+                  и безопасности состава — родитель спокоен, ребёнок доволен.
+                  Детские зоны в каждом ресторане.
+                </p>
+              </div>
+            </div>
+            <div className="absolute -right-8 top-1/2 -translate-y-1/2 pointer-events-none">
+              <IconChild className="w-48 h-48 md:w-64 md:h-64 text-black/8 group-hover:text-white/8 transition-colors duration-500" />
+            </div>
+          </div>
+        </FadeIn>
+
       </div>
 
       {/* UTP */}
