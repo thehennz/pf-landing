@@ -1,28 +1,111 @@
 "use client";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, animate } from "framer-motion";
 import SectionLabel from "./SectionLabel";
 
-function Bar({ label, pct, delay }: { label: string; pct: number; delay: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+/* ── Счётчик ── */
+function useCounter(target: number, inView: boolean, delay: number) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, target, {
+      duration: 1.8, delay,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (v) => setValue(Math.round(v)),
+    });
+    return controls.stop;
+  }, [inView, target, delay]);
+  return value;
+}
+
+/* ── Размер шрифта пропорционально % ── */
+function getFontSize(pct: number): string {
+  const remMax = Math.max(3, (pct / 50) * 9);
+  const remMin = Math.max(2.5, remMax * 0.55);
+  const vw = (pct * 0.18).toFixed(1);
+  return `clamp(${remMin.toFixed(1)}rem, ${vw}vw, ${remMax.toFixed(1)}rem)`;
+}
+
+/* ── Строка метрики ── */
+function MetricRow({ label, pct, color, inView, delay }: {
+  label: string; pct: number; color: string; inView: boolean; delay: number;
+}) {
+  const count = useCounter(pct, inView, delay);
+
   return (
-    <div ref={ref} className="space-y-2">
-      <div className="flex justify-between text-xs">
-        <span className="text-black/60">{label}</span>
-        <span className="font-bold">{pct}%</span>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="flex flex-col gap-3"
+    >
+      {/* Лейбл + число */}
+      <div className="flex items-end justify-between gap-4">
+        <span className="text-[10px] font-bold tracking-[0.22em] uppercase text-black/40 pb-1">
+          {label}
+        </span>
+        <div className="flex items-start leading-none shrink-0" style={{ color }}>
+          <span
+            className="font-black tabular-nums"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: getFontSize(pct),
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+            }}
+          >
+            {count}
+          </span>
+          <span
+            className="font-black"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "clamp(1rem, 2vw, 1.6rem)",
+              opacity: 0.4,
+              lineHeight: 1,
+              marginTop: "0.1em",
+            }}
+          >
+            %
+          </span>
+        </div>
       </div>
-      <div className="h-1 bg-black/10 overflow-hidden">
+
+      {/* Бар на всю ширину */}
+      <div className="h-[2px] w-full bg-black/[0.08] overflow-hidden">
         <motion.div
-          className="h-full bg-[#FF0000]"
+          className="h-full"
+          style={{ background: color }}
           initial={{ width: 0 }}
           animate={inView ? { width: `${pct}%` } : {}}
-          transition={{ duration: 1.3, delay, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.6, delay: delay + 0.1, ease: [0.22, 1, 0.36, 1] }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
+
+/* ── Данные ── */
+const markets = [
+  {
+    title: "Зрелые рынки",
+    sub: "Бренд известен",
+    items: [
+      { label: "Digital",    pct: 50, color: "#FF0000" },
+      { label: "CRM / Push", pct: 40, color: "#FFC800" },
+      { label: "Офлайн",     pct: 10, color: "#1A1A1A" },
+    ],
+  },
+  {
+    title: "Развивающиеся рынки",
+    sub: "Рост знания бренда",
+    items: [
+      { label: "Digital",    pct: 30, color: "#FF0000" },
+      { label: "CRM / Push", pct: 10, color: "#FFC800" },
+      { label: "Офлайн",     pct: 60, color: "#1A1A1A" },
+    ],
+  },
+];
 
 const tools = [
   {
@@ -43,39 +126,74 @@ const tools = [
   },
 ];
 
+/* ── Компонент ── */
 export default function Promo() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
     <section id="promo" className="bg-white border-b border-black">
       <div className="px-6 md:px-14 py-20 md:py-28">
-        <SectionLabel label="Продвижение" title="Распределение бюджета" lead="Стратегия зависит от зрелости рынка: зрелые — digital, развивающиеся — офлайн." />
+        <SectionLabel
+          label="Продвижение"
+          title="Распределение бюджета"
+          lead="Стратегия зависит от зрелости рынка: зрелые — digital, развивающиеся — офлайн."
+        />
 
-        <div ref={ref} className="grid md:grid-cols-2 gap-px bg-black border border-black mb-16">
-          {[
-            { title: "Зрелые рынки", items: [{ label: "Digital", pct: 50 }, { label: "CRM / Push / Email", pct: 40 }, { label: "Офлайн", pct: 10 }] },
-            { title: "Развивающиеся рынки", items: [{ label: "Digital", pct: 30 }, { label: "CRM / Push / Email", pct: 10 }, { label: "Офлайн", pct: 60 }] },
-          ].map((m, mi) => (
+        {/* ── Карточки с графиками ── */}
+        <div ref={sectionRef} className="grid md:grid-cols-2 gap-6 md:gap-10 mb-16">
+          {markets.map((m, mi) => (
             <motion.div
               key={m.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: mi * 0.15, duration: 0.6 }}
-              className="bg-white p-8 md:p-10"
+              transition={{ duration: 0.7, delay: mi * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#F8F8F8] px-8 md:px-10 pt-8 pb-10"
             >
-              <h3 className="font-bold text-sm uppercase tracking-widest mb-6">{m.title}</h3>
-              <div className="space-y-5">
-                {m.items.map((item, ii) => (
-                  <Bar key={item.label} label={item.label} pct={item.pct} delay={mi * 0.2 + ii * 0.15} />
+              {/* Заголовок */}
+              <motion.div
+                className="mb-10"
+                initial={{ opacity: 0, x: -12 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.55, delay: mi * 0.15 + 0.2 }}
+              >
+                <p className="text-[9px] font-bold tracking-[0.28em] uppercase text-black/30 mb-1">
+                  {m.sub}
+                </p>
+                <h3
+                  className="font-black uppercase text-black leading-tight"
+                  style={{
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "clamp(1.1rem, 2vw, 1.6rem)",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {m.title}
+                </h3>
+              </motion.div>
+
+              {/* Строки метрик — от большего к меньшему */}
+              <div className="flex flex-col gap-8">
+                {[...m.items].sort((a, b) => b.pct - a.pct).map((item, ii) => (
+                  <MetricRow
+                    key={item.label}
+                    label={item.label}
+                    pct={item.pct}
+                    color={item.color}
+                    inView={inView}
+                    delay={mi * 0.15 + ii * 0.14 + 0.35}
+                  />
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
 
-        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/40 mb-6">Инструменты продвижения</p>
-        <div className="grid sm:grid-cols-2 gap-px bg-black border border-black">
+        {/* ── Инструменты продвижения ── */}
+        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/40 mb-6">
+          Инструменты продвижения
+        </p>
+        <div className="grid sm:grid-cols-2 gap-6 md:gap-10">
           {tools.map((t, i) => {
             const ref2 = useRef<HTMLDivElement>(null);
             const inView2 = useInView(ref2, { once: true, margin: "-40px" });
@@ -86,17 +204,21 @@ export default function Promo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView2 ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.09, duration: 0.6 }}
-                className="bg-white p-8 hover:bg-[#F8F8F8] transition-colors duration-300"
+                className="bg-[#F8F8F8] px-8 md:px-10 pt-8 pb-10"
               >
-                <h3 className="font-bold text-sm uppercase tracking-wide mb-5">{t.title}</h3>
-                <ul className="space-y-2.5">
-                  {t.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-xs text-black/50 leading-relaxed">
-                      <span className="text-[#FF0000] mt-0.5 shrink-0">—</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <h3
+                  className="font-black uppercase text-black leading-none mb-8"
+                  style={{
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {t.title}
+                </h3>
+                <p className="text-base text-black/45 leading-relaxed">
+                  {t.items.join(" · ")}
+                </p>
               </motion.div>
             );
           })}

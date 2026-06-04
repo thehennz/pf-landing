@@ -201,25 +201,6 @@ export default function Product() {
                 </p>
               </div>
 
-              {/* Right: stats */}
-              <div className="flex md:flex-col gap-8 md:gap-6 shrink-0">
-                {[
-                  { val: "100%", label: "контроль состава" },
-                  { val: "Во всех", label: "ресторанах" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <div
-                      className="font-black text-black group-hover:text-white leading-none transition-colors duration-300"
-                      style={{ fontFamily: "Arial, sans-serif", fontSize: "1.8rem" }}
-                    >
-                      {s.val}
-                    </div>
-                    <div className="text-[10px] font-bold tracking-widest uppercase text-black/50 group-hover:text-white/40 transition-colors duration-300 mt-1">
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Фоновая иконка */}

@@ -196,6 +196,37 @@ export const IconScooter = ({ className }: IconProps) => (
   </svg>
 );
 
+/* Diamond — доступное качество */
+export const IconDiamond = ({ className }: IconProps) => (
+  <svg className={className} viewBox="0 0 64 64" fill="currentColor">
+    <path d="M32 4L56 26L32 60L8 26L32 4z" opacity="0.12"/>
+    <path d="M32 10L52 28L32 56L12 28L32 10z"/>
+    <path d="M12 28h40" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" opacity="0.35"/>
+    <path d="M22 28L32 10l10 18z" opacity="0.55"/>
+  </svg>
+);
+
+/* Stack — комбо и наборы */
+export const IconStack = ({ className }: IconProps) => (
+  <svg className={className} viewBox="0 0 64 64" fill="currentColor">
+    <rect x="6"  y="7"  width="52" height="14" rx="3" opacity="0.18"/>
+    <rect x="6"  y="26" width="52" height="14" rx="3" opacity="0.55"/>
+    <rect x="6"  y="45" width="52" height="14" rx="3"/>
+  </svg>
+);
+
+/* Sliders — региональная адаптация */
+export const IconSliders = ({ className }: IconProps) => (
+  <svg className={className} viewBox="0 0 64 64" fill="currentColor">
+    <rect x="6" y="11" width="52" height="5" rx="2.5" opacity="0.2"/>
+    <circle cx="20" cy="13.5" r="9"/>
+    <rect x="6" y="29" width="52" height="5" rx="2.5" opacity="0.2"/>
+    <circle cx="42" cy="31.5" r="9"/>
+    <rect x="6" y="47" width="52" height="5" rx="2.5" opacity="0.2"/>
+    <circle cx="26" cy="49.5" r="9"/>
+  </svg>
+);
+
 /* Chart */
 export const IconChart = ({ className }: IconProps) => (
   <svg className={className} viewBox="0 0 64 64" fill="currentColor">
