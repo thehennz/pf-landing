@@ -13,7 +13,7 @@ const positioning = [
 
 const products = [
   { Icon: IconPizza,  title: "Пицца",                  badge: "Ключевая категория", text: "Главный драйвер продаж. Три размера, классика и актуальные новинки. Регулярное обновление ассортимента.",      tier: "primary" },
-  { Icon: IconRoll,   title: "Роллы",                  badge: "2-я по значимости",  text: "Ключевые вкусовые предпочтения. Тренды (роллы без риса). Доступный ценовой сегмент.",                           tier: "primary" },
+  { Icon: IconRoll,   title: "Роллы",                  badge: "2-я по значимости",  text: "Ключевые вкусовые предпочтения. Тренды. Доступный ценовой сегмент.",                           tier: "primary" },
   { Icon: IconHot,    title: "Горячие блюда",          badge: null,                 text: "Расширяет меню для тех, кто хочет полноценный горячий обед. Стабильное качество и стандарты.",                   tier: "secondary" },
   { Icon: IconFries,  title: "Стритфуд",               badge: null,                 text: "Картофель фри, наггетсы и другие бестселлеры. Идеально как дополнение к основному заказу.",                    tier: "secondary" },
   { Icon: IconSnack,  title: "Закуски",                badge: null,                 text: "Лёгкие и быстрые позиции — для компании, офиса или дополнения к основному блюду.",                              tier: "secondary" },
@@ -43,6 +43,66 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}>
       {children}
     </motion.div>
+  );
+}
+
+const packagingFeatures = [
+  { word: "Впечатление", sub: "с первого касания" },
+  { word: "Доверие",     sub: "с первого взгляда" },
+  { word: "Вкус",        sub: "сохранён до конца" },
+];
+
+function PackagingBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <div className="border-b border-black bg-white">
+      <div className="px-6 md:px-14 py-20 md:py-28">
+        <FadeIn>
+          <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#FF0000] mb-3">
+            Продукт
+          </p>
+          <div className="overflow-hidden mb-14">
+            <motion.h2
+              className="font-black uppercase text-black leading-none"
+              style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.03em" }}
+              initial={{ y: "105%" }}
+              animate={inView ? { y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Упаковка как часть продукта
+            </motion.h2>
+          </div>
+        </FadeIn>
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {packagingFeatures.map((f, i) => (
+            <motion.div
+              key={f.word}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 + i * 0.12, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="group cursor-default relative overflow-hidden bg-[#F8F8F8]"
+            >
+              <div className="absolute inset-0 bg-black origin-left z-0
+                             scale-x-0 group-hover:scale-x-100
+                             transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
+              <div className="relative z-10 flex flex-col p-8 md:p-10 min-h-[220px]">
+                <h3
+                  className="font-black uppercase leading-none mt-auto mb-3
+                             text-black group-hover:text-white transition-colors duration-300"
+                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", letterSpacing: "-0.03em" }}
+                >
+                  {f.word}
+                </h3>
+                <p className="text-sm text-black/45 group-hover:text-white/65 transition-colors duration-300">
+                  {f.sub}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -180,7 +240,7 @@ export default function Product() {
         </div>
         {/* Детское меню — отдельный акцентный блок */}
         <FadeIn delay={0.3}>
-          <div className="border border-t-0 border-black bg-[#FFC800] group cursor-default hover:bg-black transition-colors duration-500 relative overflow-hidden">
+          <div className="border border-t-0 border-black bg-[#FFC800] group cursor-default hover:bg-[#FF0000] transition-colors duration-500 relative overflow-hidden">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 p-8 md:p-12 relative z-10">
 
               {/* Left: label + title */}
@@ -211,6 +271,9 @@ export default function Product() {
         </FadeIn>
 
       </div>
+
+      {/* Упаковка как часть продукта */}
+      <PackagingBlock />
 
       {/* Под любую ситуацию */}
       <div className="border-b border-black">
