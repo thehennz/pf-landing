@@ -1,3 +1,3 @@
-твой-домен.ru {
+fhs2.duckdns.org {
     reverse_proxy app:3000
 }
