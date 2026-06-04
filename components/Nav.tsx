@@ -60,7 +60,7 @@ export default function Nav() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ delay: i * 0.04, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="text-white/50 hover:text-white text-[11px] tracking-widest uppercase transition-colors duration-200 font-bold"
+                className="text-white/50 hover:text-[#FFC800] text-[11px] tracking-widest uppercase transition-colors duration-200 font-bold"
               >
                 {l.label}
               </motion.a>

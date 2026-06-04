@@ -69,19 +69,27 @@ function ServiceItem({ title, text, delay }: { title: string; text: string; dela
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay, duration: 0.6 }}
-      className="bg-[#F8F8F8] px-8 md:px-10 pt-8 pb-10"
+      className="group cursor-default relative overflow-hidden bg-[#F8F8F8]"
     >
-      <h3
-        className="font-black uppercase text-black leading-tight mb-5"
-        style={{
-          fontFamily: "Arial, sans-serif",
-          fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
-          letterSpacing: "-0.02em",
-        }}
-      >
-        {title}
-      </h3>
-      <p className="text-base text-black/45 leading-relaxed">{text}</p>
+      <div className="absolute inset-0 bg-black origin-left z-0
+                     scale-x-0 group-hover:scale-x-100
+                     transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
+      <div className="relative z-10 px-8 md:px-10 pt-8 pb-10">
+        <h3
+          className="font-black uppercase leading-tight mb-5
+                     text-black group-hover:text-white transition-colors duration-300"
+          style={{
+            fontFamily: "Arial, sans-serif",
+            fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {title}
+        </h3>
+        <p className="text-base text-black/45 group-hover:text-white/65 leading-relaxed transition-colors duration-300">
+          {text}
+        </p>
+      </div>
     </motion.div>
   );
 }
