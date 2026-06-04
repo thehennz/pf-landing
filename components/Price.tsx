@@ -151,6 +151,117 @@ export default function Price() {
 
         </div>
       </div>
+      {/* Психология цены */}
+      <PsychologyBlock />
+
+      {/* Акцентная фраза */}
+      {(() => {
+        const ref = useRef<HTMLDivElement>(null);
+        const inView = useInView(ref, { once: true, margin: "-60px" });
+        return (
+          <div ref={ref} className="overflow-hidden border-t border-black">
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={inView ? { x: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#FF0000] px-6 md:px-14 py-8 md:py-10 flex items-center gap-6"
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="text-white font-black uppercase leading-none"
+                style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.8rem, 4vw, 3.5rem)", letterSpacing: "-0.02em" }}
+              >
+                Качество.{" "}
+                <span className="text-white/80">Простота.</span>{" "}
+                <span className="text-white/60">Выгода.</span>
+              </motion.span>
+            </motion.div>
+          </div>
+        );
+      })()}
     </section>
+  );
+}
+
+function PsychologyBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  const blocks = [
+    {
+      num: "01",
+      title: "Форматы акций",
+      items: [
+        "Регулярные сетевые акции и локальные спецпредложения под каждый рынок",
+        "Персонализированные офферы в приложении — на основе истории заказов",
+        "Промокоды, реферальные механики и предложения для первого заказа",
+      ],
+    },
+    {
+      num: "02",
+      title: "Психологические приёмы",
+      items: [
+        "«Красивые цены» — визуально понятные, без лишних дробей",
+        "Акцент на выгоде в комбо-наборах: клиент видит экономию, а не стоимость",
+        "Готовые решения упрощают выбор и снижают барьер входа",
+      ],
+    },
+  ];
+
+  return (
+    <div className="border-t border-black bg-black">
+      <div className="px-6 md:px-14 pt-20 md:pt-28 pb-0">
+        <SectionLabel
+          dark
+          label="Ценообразование"
+          title={<><Accent>Психология</Accent> цены. Скидки и акции.</>}
+          lead="Как мы формируем восприятие цены и превращаем скидки в инструмент роста."
+        />
+      </div>
+
+      <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border-t border-white/10 pb-20 md:pb-28">
+        {blocks.map((block, bi) => (
+          <motion.div
+            key={block.num}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, delay: bi * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-black px-6 md:px-14 py-10 md:py-12 group"
+          >
+            {/* Заголовок блока */}
+            <div className="flex items-center gap-4 mb-8">
+              <span className="font-black text-[#FFC800] text-2xl leading-none"
+                style={{ fontFamily: "Arial, sans-serif" }}>
+                {block.num}
+              </span>
+              <h3 className="font-black uppercase text-white tracking-wide"
+                style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.2rem, 2.2vw, 1.56rem)", letterSpacing: "-0.01em" }}>
+                {block.title}
+              </h3>
+            </div>
+
+            {/* Список */}
+            <ul className="flex flex-col gap-0 border-t border-white/10">
+              {block.items.map((item, ii) => (
+                <motion.li
+                  key={ii}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: bi * 0.15 + ii * 0.1 + 0.2 }}
+                  className="flex items-start gap-4 py-5 border-b border-white/10 group/item"
+                >
+                  <span className="shrink-0 w-1 h-1 rounded-full bg-[#FF0000] mt-2" />
+                  <span className="text-base text-white/50 leading-relaxed group-hover/item:text-white/80 transition-colors duration-200">
+                    {item}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }
