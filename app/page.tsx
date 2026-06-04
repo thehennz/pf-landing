@@ -7,6 +7,7 @@ import Channels from "@/components/Channels";
 import Promo from "@/components/Promo";
 import Audience from "@/components/Audience";
 import Service from "@/components/Service";
+import Final from "@/components/Final";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <Promo />
       <Audience />
       <Service />
+      <Final />
       <Footer />
     </>
   );
