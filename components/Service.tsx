@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionLabel from "./SectionLabel";
+import Accent from "./Accent";
 
 /* ── Данные ── */
 const principles = [
@@ -167,7 +168,7 @@ export default function Service() {
         <div className="px-6 md:px-14 py-20 md:py-28">
           <SectionLabel
             label="Сервис"
-            title="Три принципа"
+            title={<>Три <Accent>принципа</Accent></>}
             lead="Сервис начинается с первого касания. Положительный опыт — возврат клиента."
           />
 
@@ -199,7 +200,7 @@ export default function Service() {
         <div className="px-6 md:px-14 py-20 md:py-28">
           <SectionLabel
             label="Фокус задач"
-            title="Ключевые боли бизнеса"
+            title={<>Ключевые <Accent>боли</Accent> бизнеса</>}
             lead="На чём сосредоточить усилия маркетинговой команды в первую очередь."
           />
           <div className="border border-black divide-y divide-black">

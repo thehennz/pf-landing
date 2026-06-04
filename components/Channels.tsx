@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionLabel from "./SectionLabel";
+import Accent from "./Accent";
 
 const channels = [
   {
@@ -48,7 +49,7 @@ export default function Channels() {
       <div className="px-6 md:px-14 py-20 md:py-28">
         <SectionLabel
           label="Каналы продаж"
-          title="Омниканальность"
+          title={<><Accent>Омни</Accent>канальность</>}
           lead="Единое меню, акции и программа лояльности во всех каналах."
         />
 

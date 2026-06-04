@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionLabel from "./SectionLabel";
+import Accent from "./Accent";
 import { IconPizza, IconRoll, IconFries, IconHot, IconSnack, IconSalad, IconChild } from "./Icons";
 
 const positioning = [
@@ -9,6 +10,7 @@ const positioning = [
   { num: "02", title: "Эмоциональная близость", text: "Продукт «для себя и для своих» — понятный вкус, который нравится семье, друзьям, коллегам." },
   { num: "03", title: "Качество без компромиссов", text: "Натуральные проверенные ингредиенты. Стабильный стандарт вкуса на каждой точке." },
   { num: "04", title: "Удобство", text: "Любой канал — доставка, зал, самовывоз, агрегаторы. Единое меню и программа лояльности везде." },
+  { num: "05", title: "Вкус", text: "Стабильный вкус — не случайность, а стандарт. Контроль на каждом этапе: от ингредиентов до готового блюда." },
 ];
 
 const products = [
@@ -70,7 +72,10 @@ function PackagingBlock() {
               animate={inView ? { y: 0 } : {}}
               transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              Упаковка как часть продукта
+              Упаковка это{" "}
+              <span className="bg-[#FF0000] text-white px-3 py-1 inline-block">
+                часть продукта
+              </span>
             </motion.h2>
           </div>
         </FadeIn>
@@ -113,7 +118,7 @@ export default function Product() {
       {/* Positioning — vertical editorial list */}
       <div className="border-b border-black">
         <div className="px-6 md:px-14 pt-20 md:pt-28 pb-0">
-          <SectionLabel label="Продукт" title="Позиционирование и концепция" lead="Максимальное качество при доступной цене. Просто, понятно, для всех." />
+          <SectionLabel label="Продукт" title={<>Позиционирование и <Accent>концепция</Accent></>} lead="Максимальное качество при доступной цене. Просто, понятно, для всех." />
         </div>
 
         {positioning.map((p, i) => {
@@ -176,11 +181,47 @@ export default function Product() {
             </motion.div>
           );
         })}
+
+        {/* Акцентная фраза */}
+        {(() => {
+          const ref = useRef<HTMLDivElement>(null);
+          const inView = useInView(ref, { once: true, margin: "-60px" });
+          return (
+            <div ref={ref} className="overflow-hidden border-t border-black">
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={inView ? { x: 0 } : {}}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-[#FF0000] px-6 md:px-14 py-8 md:py-10 flex items-center gap-6"
+              >
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="text-white font-black uppercase leading-none"
+                  style={{
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Эмоционально.{" "}
+                  <span className="text-white/80">Близко.</span>{" "}
+                  <span className="text-white/60">Повседневно.</span>
+                </motion.span>
+              </motion.div>
+            </div>
+          );
+        })()}
+
       </div>
+
+      {/* Упаковка как часть продукта */}
+      <PackagingBlock />
 
       {/* Products — large cards */}
       <div className="px-6 md:px-14 py-20 md:py-28 bg-[#F8F8F8] border-b border-black">
-        <SectionLabel label="Ассортимент" title="Продуктовая матрица" lead="Всё в одном месте — для семьи, офиса, компании или индивидуального заказа." />
+        <SectionLabel label="Ассортимент" title={<>Продуктовая <Accent>матрица</Accent></>} lead="Всё в одном месте — для семьи, офиса, компании или индивидуального заказа." />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-black border border-black">
           {products.map((p, i) => {
@@ -245,8 +286,8 @@ export default function Product() {
 
               {/* Left: label + title */}
               <div className="flex-1">
-                <span className="inline-block text-[10px] font-bold tracking-[0.25em] uppercase bg-black text-white px-3 py-1.5 mb-5 group-hover:bg-white group-hover:text-black transition-colors duration-300">
-                  Семейный ресторан
+                <span className="inline-block text-[11px] font-bold tracking-wider uppercase bg-black text-white px-4 py-2 mb-5 group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                  Наша отличительная черта
                 </span>
                 <h3
                   className="font-black uppercase leading-none text-black group-hover:text-white transition-colors duration-500 mb-4"
@@ -272,13 +313,10 @@ export default function Product() {
 
       </div>
 
-      {/* Упаковка как часть продукта */}
-      <PackagingBlock />
-
       {/* Под любую ситуацию */}
       <div className="border-b border-black">
         <div className="px-6 md:px-14 pt-20 md:pt-28 pb-0">
-          <SectionLabel label="Применение" title="Продукт под любую ситуацию" />
+          <SectionLabel label="Применение" title={<>Продукт под любую <Accent>ситуацию</Accent></>} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black border-t border-black">
@@ -356,7 +394,7 @@ export default function Product() {
       {/* UTP */}
       <div className="bg-[#FFC800]">
         <div className="px-6 md:px-14 pt-20 md:pt-28 pb-0">
-          <SectionLabel label="УТП продукта" title="10 ключевых преимуществ" />
+          <SectionLabel label="УТП продукта" title={<>10 ключевых <Accent>преимуществ</Accent></>} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 border-t border-black">

@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import SectionLabel from "./SectionLabel";
+import Accent from "./Accent";
 
 /* ── Счётчик ── */
 function useCounter(target: number, inView: boolean, delay: number) {
@@ -136,7 +137,7 @@ export default function Promo() {
       <div className="px-6 md:px-14 py-20 md:py-28">
         <SectionLabel
           label="Продвижение"
-          title="Распределение бюджета"
+          title={<>Распределение <Accent>бюджета</Accent></>}
           lead="Стратегия зависит от зрелости рынка: зрелые — digital, развивающиеся — офлайн."
         />
 

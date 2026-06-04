@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionLabel from "./SectionLabel";
+import Accent from "./Accent";
 import { IconStack, IconDiamond, IconSliders } from "./Icons";
 
 const cards = [
@@ -42,7 +43,7 @@ export default function Price() {
       <div className="px-6 md:px-14 py-20 md:py-28">
         <SectionLabel
           label="Ценообразование"
-          title="Стратегия цены"
+          title={<>Стратегия <Accent>цены</Accent></>}
           lead="Средний, ближе к доступному сегменту. Клиент платит адекватную цену за вкусный и сытный продукт."
         />
 

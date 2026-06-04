@@ -4,12 +4,13 @@ import { useRef } from "react";
 
 interface Props {
   label: string;
-  title: string;
+  title: string | React.ReactNode;
   lead?: string;
   dark?: boolean;
+  children?: React.ReactNode;
 }
 
-export default function SectionLabel({ label, title, lead, dark }: Props) {
+export default function SectionLabel({ label, title, lead, dark, children }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -46,6 +47,15 @@ export default function SectionLabel({ label, title, lead, dark }: Props) {
         >
           {lead}
         </motion.p>
+      )}
+      {children && (
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, delay: 0.16 }}
+        >
+          {children}
+        </motion.div>
       )}
     </div>
   );

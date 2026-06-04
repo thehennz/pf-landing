@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionLabel from "./SectionLabel";
+import Accent from "./Accent";
 
 const segments = [
   {
@@ -36,7 +37,7 @@ export default function Audience() {
       <div className="px-6 md:px-14 py-20 md:py-28">
         <SectionLabel
           label="Целевая аудитория"
-          title="Ключевые сегменты"
+          title={<>Ключевые <Accent>сегменты</Accent></>}
           lead="ПиццаФабрика — для тех, кто ценит простое. Доступно, стабильно, вкусно, удобно."
         />
 
