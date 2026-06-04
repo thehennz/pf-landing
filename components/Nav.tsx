@@ -14,10 +14,14 @@ const links = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [linksVisible, setLinksVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      setLinksVisible(window.scrollY > window.innerHeight * 0.7);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -47,18 +51,21 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((l, i) => (
-            <motion.a
-              key={l.href}
-              href={l.href}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
-              className="text-white/50 hover:text-white text-[11px] tracking-widest uppercase transition-colors duration-200 font-bold"
-            >
-              {l.label}
-            </motion.a>
-          ))}
+          <AnimatePresence>
+            {linksVisible && links.map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ delay: i * 0.04, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="text-white/50 hover:text-white text-[11px] tracking-widest uppercase transition-colors duration-200 font-bold"
+              >
+                {l.label}
+              </motion.a>
+            ))}
+          </AnimatePresence>
         </div>
 
         {/* Mobile burger */}

@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import Goal from "@/components/Goal";
 import Product from "@/components/Product";
 import Price from "@/components/Price";
 import Channels from "@/components/Channels";
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
+      <Goal />
       <Product />
       <Price />
       <Channels />

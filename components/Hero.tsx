@@ -99,24 +99,28 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="flex items-stretch gap-0 border border-white/10 w-fit"
+          className="flex flex-wrap gap-2"
         >
           {[
-            { num: "10", label: "УТП продукта" },
-            { num: "6", label: "Каналов продаж" },
-            { num: "4", label: "Сегмента ЦА" },
-            { num: "3", label: "Принципа сервиса" },
-          ].map((s, i) => (
-            <motion.div
-              key={s.label}
+            "Продукт",
+            "Цена",
+            "Каналы продаж",
+            "Продвижение",
+            "Сервис",
+            "Целевая аудитория",
+          ].map((label, i) => (
+            <motion.span
+              key={label}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 + i * 0.08 }}
-              className="flex flex-col px-6 py-4 border-r border-white/10 last:border-r-0 cursor-default group hover:bg-white/5 transition-colors duration-300"
+              transition={{ delay: 1.0 + i * 0.07 }}
+              className="cursor-default border border-white/15 text-white/50
+                         px-4 py-2 text-[10px] font-bold tracking-[0.18em] uppercase
+                         hover:border-white/35 hover:text-white/80
+                         transition-colors duration-300"
             >
-              <span className="text-white font-black text-2xl leading-none mb-1" style={{ fontFamily: "Arial, sans-serif" }}>{s.num}</span>
-              <span className="text-white/35 text-[9px] tracking-[0.15em] uppercase font-bold group-hover:text-white/60 transition-colors duration-300">{s.label}</span>
-            </motion.div>
+              {label}
+            </motion.span>
           ))}
         </motion.div>
       </motion.div>
