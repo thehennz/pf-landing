@@ -214,7 +214,7 @@ function PsychologyBlock() {
         <SectionLabel
           dark
           label="Ценообразование"
-          title={<><Accent>Психология</Accent> цены. Скидки и акции.</>}
+          title={<><Accent>Психология</Accent> цены. Скидки и акции</>}
           lead="Как мы формируем восприятие цены и превращаем скидки в инструмент роста."
         />
       </div>

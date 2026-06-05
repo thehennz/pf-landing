@@ -99,28 +99,38 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="flex flex-wrap gap-2"
+          className="flex flex-col gap-2"
         >
           {[
-            "Продукт",
-            "Цена",
-            "Каналы продаж",
-            "Продвижение",
-            "Сервис",
-            "Целевая аудитория",
-          ].map((label, i) => (
-            <motion.span
-              key={label}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 + i * 0.07 }}
-              className="cursor-default border border-white/15 text-white/50
-                         px-4 py-2 text-[10px] font-bold tracking-[0.18em] uppercase
-                         hover:border-white/35 hover:text-white/80
-                         transition-colors duration-300"
-            >
-              {label}
-            </motion.span>
+            [
+              { label: "Продукт",       href: "#product"  },
+              { label: "Цена",          href: "#price"    },
+              { label: "Каналы продаж", href: "#channels" },
+              { label: "Продвижение",   href: "#promo"    },
+            ],
+            [
+              { label: "Сервис",            href: "#service"  },
+              { label: "Целевая аудитория", href: "#audience" },
+              { label: "Цели бизнеса",      href: "#focus"    },
+            ],
+          ].map((row, ri) => (
+            <div key={ri} className="flex gap-2">
+              {row.map(({ label, href }, i) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0 + (ri * 4 + i) * 0.07 }}
+                  className="border border-white/15 text-white/50
+                             px-4 py-2 text-[10px] font-bold tracking-[0.18em] uppercase
+                             hover:border-white/35 hover:text-white/80
+                             transition-colors duration-300 cursor-pointer"
+                >
+                  {label}
+                </motion.a>
+              ))}
+            </div>
           ))}
         </motion.div>
       </motion.div>
