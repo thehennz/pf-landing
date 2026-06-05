@@ -6,6 +6,7 @@ import Price from "@/components/Price";
 import Channels from "@/components/Channels";
 import Promo from "@/components/Promo";
 import Audience from "@/components/Audience";
+import NotAudience from "@/components/NotAudience";
 import Service from "@/components/Service";
 import Final from "@/components/Final";
 import Footer from "@/components/Footer";
@@ -21,6 +22,7 @@ export default function Home() {
       <Channels />
       <Promo />
       <Audience />
+      <NotAudience />
       <Service />
       <Final />
       <Footer />
