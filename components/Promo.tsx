@@ -122,8 +122,8 @@ const tools = [
     items: ["Акции «2 по цене 1», «Пицца дня»", "Сезонные и лимитированные предложения", "Программа лояльности с бонусами", "Промокоды для «спящих» клиентов"],
   },
   {
-    title: "Офлайн и PR",
-    items: ["Наружная реклама, листовки, радио", "Коллаборации с локальными бизнесами", "Инфлюенсеры и digital-PR", "Социальная ответственность"],
+    title: "OFFLINE-РЕКЛАМА",
+    items: ["Наружная реклама", "Радио", "Коллаборации", "Остановки", "Лифты"],
   },
 ];
 
@@ -194,7 +194,7 @@ export default function Promo() {
         <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-black/40 mb-6">
           Инструменты продвижения
         </p>
-        <div className="grid sm:grid-cols-2 gap-6 md:gap-10">
+        <div className="grid sm:grid-cols-2 gap-6 md:gap-10 mb-20">
           {tools.map((t, i) => {
             const ref2 = useRef<HTMLDivElement>(null);
             const inView2 = useInView(ref2, { once: true, margin: "-40px" });
@@ -217,14 +217,154 @@ export default function Promo() {
                 >
                   {t.title}
                 </h3>
-                <p className="text-base text-black/45 leading-relaxed">
-                  {t.items.join(" · ")}
-                </p>
+                <div className="text-base text-black/45 leading-relaxed space-y-2">
+                  {t.items.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <span className="text-black/20 shrink-0">·</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             );
           })}
         </div>
+
+        {/* ── PR блоки — обведены красной границей ── */}
+        <div className="border-2 border-[#FF0000]">
+          <PRBlock />
+          <PRDirectionsBlock />
+          <PRMetricsBlock />
+        </div>
       </div>
     </section>
+  );
+}
+
+function PRDirectionsBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const directions = [
+    "Медиа и инфоповоды",
+    "Социальная ответственность и локальные проекты",
+    "Корпоративный PR",
+    "Антикризисные коммуникации",
+    "Digital-PR и инфлюенсеры",
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: tools.length * 0.09 + 0.1, duration: 0.6 }}
+      className="bg-[#F8F8F8] px-8 md:px-10 pt-8 pb-10"
+    >
+      <h3
+        className="font-black uppercase text-black leading-none mb-8"
+        style={{
+          fontFamily: "Arial, sans-serif",
+          fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
+          letterSpacing: "-0.03em",
+        }}
+      >
+        Основные направления PR
+      </h3>
+      <div className="text-base text-black/45 leading-relaxed space-y-2">
+        {directions.map((dir, idx) => (
+          <div key={idx} className="flex items-start gap-3">
+            <span className="text-black/20 shrink-0">·</span>
+            <span>{dir}</span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function PRMetricsBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const metrics = [
+    "Упоминания в СМИ",
+    "Медиаохват",
+    "Доля позитивных публикаций",
+    "Рост узнаваемости бренда",
+    "Динамика репутационных показателей",
+    "Рост доверия к бренду (опросы, NPS)",
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: tools.length * 0.09 + 0.2, duration: 0.6 }}
+      className="bg-[#F8F8F8] px-8 md:px-10 pt-8 pb-10"
+    >
+      <h3
+        className="font-black uppercase text-black leading-none mb-8"
+        style={{
+          fontFamily: "Arial, sans-serif",
+          fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
+          letterSpacing: "-0.03em",
+        }}
+      >
+        Метрики эффективности PR
+      </h3>
+      <div className="text-base text-black/45 leading-relaxed space-y-2">
+        {metrics.map((metric, idx) => (
+          <div key={idx} className="flex items-start gap-3">
+            <span className="text-black/20 shrink-0">·</span>
+            <span>{metric}</span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function PRBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const goals = [
+    "Повышение узнаваемости бренда в городах присутствия",
+    "Формирование образа сильного федерального игрока",
+    "Усиление доверия к качеству продукта",
+    "Поддержка позиционирования",
+    "Формирование имиджа надёжного работодателя",
+    "Укрепление отношений с локальными сообществами",
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: tools.length * 0.09, duration: 0.6 }}
+      className="bg-[#E8E8E8] px-8 md:px-10 pt-8 pb-10"
+    >
+      <h3
+        className="font-black uppercase text-black leading-none mb-8"
+        style={{
+          fontFamily: "Arial, sans-serif",
+          fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
+          letterSpacing: "-0.03em",
+        }}
+      >
+        PR
+      </h3>
+      <div className="text-base text-black/45 leading-relaxed space-y-2">
+        {goals.map((goal, idx) => (
+          <div key={idx} className="flex items-start gap-3">
+            <span className="text-black/20 shrink-0">·</span>
+            <span>{goal}</span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   );
 }
