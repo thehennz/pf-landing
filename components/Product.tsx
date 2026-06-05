@@ -98,7 +98,7 @@ function PackagingBlock() {
                 <h3
                   className="font-black uppercase leading-none mt-auto mb-3
                              text-black group-hover:text-white transition-colors duration-300"
-                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", letterSpacing: "-0.03em" }}
+                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.9rem, 4.5vw, 3.8rem)", letterSpacing: "-0.03em" }}
                 >
                   {f.word}
                 </h3>
@@ -283,7 +283,7 @@ export default function Product() {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6, delay: i * 0.1 + 0.12, ease: [0.22, 1, 0.36, 1] }}
                     className={`font-black uppercase leading-none mb-4 transition-colors duration-300 ${s.dark ? "text-white" : "text-black group-hover:text-white"}`}
-                    style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.8rem, 3.5vw, 3.2rem)", letterSpacing: "-0.03em" }}
+                    style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.5rem, 3.5vw, 3.2rem)", letterSpacing: "-0.03em" }}
                   >
                     {s.title}
                   </motion.h3>

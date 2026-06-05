@@ -42,7 +42,7 @@ export default function Goal() {
             className="font-black uppercase text-white leading-[0.9]"
             style={{
               fontFamily: "Arial, sans-serif",
-              fontSize: "clamp(4rem, 11.5vw, 13rem)",
+              fontSize: "clamp(2.1rem, 9.5vw, 13rem)",
               letterSpacing: "-0.03em",
             }}
             initial={{ y: "105%" }}
@@ -59,7 +59,7 @@ export default function Goal() {
             className="font-black uppercase text-[#FF0000] leading-[0.9]"
             style={{
               fontFamily: "Arial, sans-serif",
-              fontSize: "clamp(4rem, 11.5vw, 13rem)",
+              fontSize: "clamp(2.1rem, 9.5vw, 13rem)",
               letterSpacing: "-0.03em",
             }}
             initial={{ y: "105%" }}

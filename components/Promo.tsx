@@ -271,7 +271,7 @@ function PRDirectionsBlock() {
         className="font-black uppercase text-black leading-none mb-8"
         style={{
           fontFamily: "Arial, sans-serif",
-          fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
+          fontSize: "clamp(1.6rem, 3.5vw, 3.2rem)",
           letterSpacing: "-0.03em",
         }}
       >
@@ -314,7 +314,7 @@ function PRMetricsBlock() {
         className="font-black uppercase text-black leading-none mb-8"
         style={{
           fontFamily: "Arial, sans-serif",
-          fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
+          fontSize: "clamp(1.35rem, 3.5vw, 3.2rem)",
           letterSpacing: "-0.03em",
         }}
       >

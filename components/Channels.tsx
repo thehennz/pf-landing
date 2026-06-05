@@ -176,7 +176,7 @@ export default function Channels() {
                              transition-colors duration-500"
                   style={{
                     fontFamily: "Arial, sans-serif",
-                    fontSize: "clamp(8rem, 16vw, 14rem)",
+                    fontSize: "clamp(5rem, 16vw, 14rem)",
                     left: "-0.32em",
                   }}
                 >
@@ -185,9 +185,9 @@ export default function Channels() {
 
                 {/* Контент */}
                 <div
-                  className="relative z-20 flex items-center justify-between gap-6
+                  className="relative z-20 flex flex-col items-start md:flex-row md:items-center md:justify-between gap-3 md:gap-6
                              py-9 md:py-12 pr-6 md:pr-10
-                             pl-[9rem] sm:pl-[12rem] md:pl-[16rem] xl:pl-[20rem]"
+                             pl-6 sm:pl-[12rem] md:pl-[16rem] xl:pl-[20rem]"
                 >
                   <div className="flex-1 min-w-0">
                     <h3
@@ -211,7 +211,7 @@ export default function Channels() {
                     </p>
                   </div>
 
-                  <div className="shrink-0 flex items-center justify-end w-28 md:w-40">
+                  <div className="shrink-0 flex items-center md:justify-end w-auto md:w-40">
                     {c.priority ? (
                       <span className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#FF0000] shrink-0" />

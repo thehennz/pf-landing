@@ -78,7 +78,7 @@ export default function Hero() {
           className="text-white uppercase font-black mb-8 leading-none"
           style={{
             fontFamily: "Arial, sans-serif",
-            fontSize: "clamp(2.8rem, 7vw, 7rem)",
+            fontSize: "clamp(1.85rem, 7vw, 7rem)",
             letterSpacing: "-0.02em",
           }}
         >

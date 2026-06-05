@@ -170,7 +170,7 @@ function ChallengeRow({ num, title, text, delay }: {
                        text-black group-hover:text-white transition-colors duration-300"
             style={{
               fontFamily: "Arial, sans-serif",
-              fontSize: "clamp(1.5rem, 3vw, 2.6rem)",
+              fontSize: "clamp(1.3rem, 3vw, 2.6rem)",
               letterSpacing: "-0.025em",
             }}
           >

@@ -82,7 +82,7 @@ export default function NotAudience() {
             className="font-black uppercase text-white leading-tight mb-6"
             style={{
               fontFamily: "Arial, sans-serif",
-              fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
+              fontSize: "clamp(1.3rem, 3.5vw, 3rem)",
               letterSpacing: "-0.025em",
             }}
           >

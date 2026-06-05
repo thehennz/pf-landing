@@ -33,7 +33,7 @@ export default function Final() {
             className="font-black uppercase text-white leading-none"
             style={{
               fontFamily: "Arial, sans-serif",
-              fontSize: "clamp(2.5rem, 7vw, 7rem)",
+              fontSize: "clamp(2rem, 7vw, 7rem)",
               letterSpacing: "-0.03em",
             }}
             initial={{ y: "105%" }}
