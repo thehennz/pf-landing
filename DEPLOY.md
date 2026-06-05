@@ -73,6 +73,11 @@ systemctl restart ssh
 ```bash
 apt install fail2ban -y
 cat > /etc/fail2ban/jail.local << 'EOF'
+[DEFAULT]
+# ВАЖНО: впиши сюда свой домашний IP, чтобы случайно не забанить себя.
+# Узнать свой IP: открой 2ip.ru
+ignoreip = 127.0.0.1/8 ::1 ТВОЙ_ДОМАШНИЙ_IP
+
 [sshd]
 enabled = true
 maxretry = 5
@@ -86,6 +91,16 @@ systemctl restart fail2ban
 ```bash
 fail2ban-client status sshd
 ```
+
+> ⚠️ **Обязательно добавь свой IP в `ignoreip`.** Иначе при нескольких неудачных
+> попытках входа (например, при настройке) fail2ban забанит тебя самого, и ты
+> не сможешь подключиться (соединение будет зависать) до конца бана.
+>
+> Если всё же забанился — зайди с другого IP (например, с телефона через мобильный
+> интернет) или из веб-консоли хостинга и выполни:
+> ```bash
+> fail2ban-client set sshd unbanip ТВОЙ_IP
+> ```
 
 ---
 
