@@ -470,23 +470,24 @@ function DiscountPrinciplesBlock() {
         <Accent>Принципы</Accent> дисконтной политики
       </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
         {principles.map((principle, idx) => (
           <motion.div
             key={principle}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="group cursor-default relative overflow-hidden bg-[#F8F8F8]"
+            className="group cursor-default relative overflow-hidden bg-[#F8F8F8]
+                       last:col-span-2 md:last:col-span-1"
           >
             <div className="absolute inset-0 bg-black origin-left z-0
                            scale-x-0 group-hover:scale-x-100
                            transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
-            <div className="relative z-10 p-8 md:p-10 min-h-[160px] flex items-center justify-center">
+            <div className="relative z-10 p-5 md:p-10 min-h-[110px] md:min-h-[160px] flex items-center justify-center">
               <p className="font-black uppercase text-center text-black group-hover:text-white transition-colors duration-300 leading-tight"
                 style={{
                   fontFamily: "Arial, sans-serif",
-                  fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+                  fontSize: "clamp(1.25rem, 2vw, 1.4rem)",
                   letterSpacing: "-0.02em",
                 }}
               >

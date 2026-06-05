@@ -150,11 +150,11 @@ function ChallengeRow({ num, title, text, delay }: {
       <span
         className="absolute top-1/2 -translate-y-1/2 font-black leading-none
                    select-none pointer-events-none z-10
-                   text-black/[0.06] group-hover:text-white/20 transition-colors duration-500"
+                   text-black/[0.06] group-hover:text-white/20 transition-colors duration-500
+                   left-2 md:-left-[0.32em]"
         style={{
           fontFamily: "Arial, sans-serif",
           fontSize: "clamp(8rem, 16vw, 14rem)",
-          left: "-0.32em",
         }}
       >
         {num}

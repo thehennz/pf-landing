@@ -7,7 +7,7 @@ export default function Goal() {
   const inView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className="bg-black min-h-screen flex flex-col justify-center relative overflow-hidden px-6 md:px-14 py-24">
+    <section className="bg-black min-h-screen flex flex-col justify-start md:justify-center relative overflow-hidden px-6 md:px-14 py-16 md:py-24">
 
       {/* Красная линия сверху */}
       <motion.div
@@ -91,7 +91,7 @@ export default function Goal() {
       {/* Водяной знак 2026 */}
       <div
         className="absolute right-6 md:right-14 bottom-10 font-black
-                   text-white/[0.03] select-none pointer-events-none leading-none"
+                   text-white/[0.08] select-none pointer-events-none leading-none"
         style={{
           fontFamily: "Arial, sans-serif",
           fontSize: "clamp(8rem, 22vw, 26rem)",

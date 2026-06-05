@@ -61,7 +61,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Main content */}
-      <motion.div style={{ opacity }} className="relative z-10 px-6 md:px-14 pb-16 md:pb-24 max-w-[900px]">
+      <motion.div style={{ opacity }} className="relative z-10 px-6 md:px-14 pb-36 md:pb-24 max-w-[900px]">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export default function Hero() {
               { label: "Цели бизнеса",      href: "#focus"    },
             ],
           ].map((row, ri) => (
-            <div key={ri} className="flex gap-2">
+            <div key={ri} className="flex flex-wrap items-center gap-2">
               {row.map(({ label, href }, i) => (
                 <motion.a
                   key={label}
@@ -125,7 +125,8 @@ export default function Hero() {
                   className="border border-white/15 text-white/50
                              px-4 py-2 text-[10px] font-bold tracking-[0.18em] uppercase
                              hover:border-white/35 hover:text-white/80
-                             transition-colors duration-300 cursor-pointer"
+                             transition-colors duration-300 cursor-pointer
+                             whitespace-nowrap inline-flex items-center"
                 >
                   {label}
                 </motion.a>
