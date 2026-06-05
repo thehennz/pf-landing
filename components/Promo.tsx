@@ -119,7 +119,7 @@ const tools = [
   },
   {
     title: "Дисконтная политика",
-    items: ["Акции «2 по цене 1», «Пицца дня»", "Сезонные и лимитированные предложения", "Программа лояльности с бонусами", "Промокоды для «спящих» клиентов"],
+    items: ["Стимулирование повторных заказов", "Увеличение среднего чека", "Повышение лояльности гостей", "Привлечение новых клиентов"],
   },
   {
     title: "OFFLINE-РЕКЛАМА",
@@ -236,6 +236,12 @@ export default function Promo() {
           <PRDirectionsBlock />
           <PRMetricsBlock />
         </div>
+
+        {/* ── Основные инструменты скидок ── */}
+        <DiscountToolsBlock />
+
+        {/* ── Принципы дисконтной политики ── */}
+        <DiscountPrinciplesBlock />
       </div>
     </section>
   );
@@ -320,6 +326,174 @@ function PRMetricsBlock() {
             <span className="text-black/20 shrink-0">·</span>
             <span>{metric}</span>
           </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function DiscountToolsBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  const sections = [
+    {
+      title: "Акции и промо",
+      items: [
+        "Временные скидки на популярные позиции",
+        "Комбо по выгодной цене",
+        "Акции формата «2 по цене 1», «Пицца дня», «Счастливые часы»",
+        "Сезонные предложения и лимитированные продукты",
+      ],
+    },
+    {
+      title: "Персональные предложения",
+      items: [
+        "Индивидуальные скидки через CRM",
+        "Промокоды для возврата «спящих» клиентов",
+        "Специальные предложения на основе истории заказов и персональные миссии",
+      ],
+    },
+    {
+      title: "Программа лояльности",
+      items: [
+        "Начисление бонусов за заказы",
+        "Возможность оплаты части заказа бонусами",
+        "Дополнительные бонусы за регистрацию / в день рождения",
+      ],
+    },
+    {
+      title: "Скидки в зале",
+      items: [
+        "Специальные предложения для гостей ресторана",
+        "Акции для семей",
+        "Привязка скидок к мероприятиям",
+      ],
+    },
+    {
+      title: "Digital-скидки",
+      items: [
+        "Эксклюзивные предложения в мобильном приложении",
+        "Промокоды в соцсетях",
+        "Механики «только онлайн» для стимулирования цифровых заказов",
+      ],
+    },
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-20 pt-20 border-t border-black bg-white"
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="font-black uppercase text-black leading-none mb-12"
+        style={{
+          fontFamily: "Arial, sans-serif",
+          fontSize: "clamp(2rem, 4.5vw, 3.8rem)",
+          letterSpacing: "-0.03em",
+        }}
+      >
+        Основные <Accent>инструменты</Accent> скидок
+      </motion.h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {sections.map((section, si) => (
+          <motion.div
+            key={section.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 + si * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-[#F8F8F8] p-8 md:p-10"
+          >
+            <h3
+              className="font-black uppercase text-black leading-none mb-6"
+              style={{
+                fontFamily: "Arial, sans-serif",
+                fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {section.title}
+            </h3>
+            <div className="text-base text-black/45 leading-relaxed space-y-3">
+              {section.items.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3">
+                  <span className="text-black/20 shrink-0 mt-0.5">·</span>
+                  <span className="text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function DiscountPrinciplesBlock() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  const principles = [
+    "Контролируемая маржинальность",
+    "Гибкость",
+    "Персонализация",
+    "Омниканальность",
+    "Аналитика",
+  ];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-20 pt-20 border-t border-black bg-white"
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="font-black uppercase text-black leading-none mb-12"
+        style={{
+          fontFamily: "Arial, sans-serif",
+          fontSize: "clamp(2rem, 4.5vw, 3.8rem)",
+          letterSpacing: "-0.03em",
+        }}
+      >
+        <Accent>Принципы</Accent> дисконтной политики
+      </motion.h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8">
+        {principles.map((principle, idx) => (
+          <motion.div
+            key={principle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="group cursor-default relative overflow-hidden bg-[#F8F8F8]"
+          >
+            <div className="absolute inset-0 bg-black origin-left z-0
+                           scale-x-0 group-hover:scale-x-100
+                           transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
+            <div className="relative z-10 p-8 md:p-10 min-h-[160px] flex items-center justify-center">
+              <p className="font-black uppercase text-center text-black group-hover:text-white transition-colors duration-300 leading-tight"
+                style={{
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                {principle}
+              </p>
+            </div>
+          </motion.div>
         ))}
       </div>
     </motion.div>

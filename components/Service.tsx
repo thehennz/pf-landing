@@ -12,10 +12,37 @@ const principles = [
 ];
 
 const items = [
-  { title: "Мобильное приложение", text: "Интуитивность, персонализация, отслеживание заказа, акции в фокусе, поддержка внутри приложения." },
-  { title: "Работа с клиентами",   text: "Поддержка через приложение, мессенджеры, телефон. Работа с отзывами с фокусом на решение проблем." },
-  { title: "Цифровой опыт",        text: "Удобные интерфейсы сайта и приложения. Личный кабинет с историей. Функция быстрого повтора заказа." },
-  { title: "Цель сервиса",         text: "Сформировать желание заказывать именно здесь снова и снова. Положительный опыт = возврат клиента." },
+  {
+    title: "Доставка",
+    bullets: [
+      "Среднее время по сети — 35 минут",
+      "Автоматизированная логистика",
+      "Прозрачное отслеживание заказов",
+    ]
+  },
+  {
+    title: "Качество сборки",
+    bullets: [
+      "Строго по стандартам",
+      "Обязательная проверка: комплектация, упаковка, температура",
+    ]
+  },
+  {
+    title: "Работа с клиентами",
+    bullets: [
+      "Поддержка: приложение, мессенджеры, телефон",
+      "Отзывы — с фокусом на решение проблем",
+      "Система компенсаций и признания ошибок",
+    ]
+  },
+  {
+    title: "Цифровой опыт",
+    bullets: [
+      "Удобные и понятные интерфейсы сайта и приложения",
+      "Личный кабинет с историей заказов",
+      "Функция быстрого повтора",
+    ]
+  },
 ];
 
 const challenges = [
@@ -61,7 +88,7 @@ function PrincipleCard({ num, word, text, delay, inView }: {
 }
 
 /* ── Карточка сервиса ── */
-function ServiceItem({ title, text, delay }: { title: string; text: string; delay: number }) {
+function ServiceItem({ title, bullets, delay }: { title: string; bullets: string[]; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   return (
@@ -75,9 +102,9 @@ function ServiceItem({ title, text, delay }: { title: string; text: string; dela
       <div className="absolute inset-0 bg-black origin-left z-0
                      scale-x-0 group-hover:scale-x-100
                      transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
-      <div className="relative z-10 px-8 md:px-10 pt-8 pb-10">
+      <div className="relative z-10 px-8 md:px-10 pt-8 pb-10 flex flex-col min-h-[280px]">
         <h3
-          className="font-black uppercase leading-tight mb-5
+          className="font-black uppercase leading-tight mb-6
                      text-black group-hover:text-white transition-colors duration-300"
           style={{
             fontFamily: "Arial, sans-serif",
@@ -87,9 +114,14 @@ function ServiceItem({ title, text, delay }: { title: string; text: string; dela
         >
           {title}
         </h3>
-        <p className="text-base text-black/45 group-hover:text-white/65 leading-relaxed transition-colors duration-300">
-          {text}
-        </p>
+        <div className="text-sm text-black/45 group-hover:text-white/65 leading-relaxed transition-colors duration-300 space-y-2.5">
+          {bullets.map((bullet, idx) => (
+            <div key={idx} className="flex items-start gap-3">
+              <span className="text-black/20 group-hover:text-white/20 shrink-0 mt-0.5">·</span>
+              <span>{bullet}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
@@ -173,7 +205,7 @@ export default function Service() {
           />
 
           {/* Принципы */}
-          <div ref={principlesRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
+          <div ref={principlesRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {principles.map((p, i) => (
               <PrincipleCard
                 key={p.word}
@@ -185,15 +217,65 @@ export default function Service() {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Ключевые характеристики ── */}
+      <section className="bg-white border-b border-black">
+        <div className="px-6 md:px-14 py-20 md:py-28">
+          <SectionLabel
+            label="Сервис"
+            title={<>Ключевые <Accent>характеристики</Accent></>}
+            lead="Комплексный подход к сервису на каждом этапе взаимодействия с гостем."
+          />
 
           {/* Детали сервиса */}
           <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
             {items.map((item, i) => (
-              <ServiceItem key={item.title} title={item.title} text={item.text} delay={i * 0.09} />
+              <ServiceItem key={item.title} title={item.title} bullets={item.bullets} delay={i * 0.09} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* ── Цель сервиса ── */}
+      {(() => {
+        const ref = useRef<HTMLDivElement>(null);
+        const inView = useInView(ref, { once: true, margin: "-60px" });
+        return (
+          <div ref={ref} className="overflow-hidden border-b border-black">
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={inView ? { x: 0 } : {}}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#FF0000] px-6 md:px-14 py-10 md:py-12"
+            >
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                className="text-white/50 font-bold uppercase tracking-[0.25em] mb-3"
+                style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(0.7rem, 0.9vw, 0.85rem)" }}
+              >
+                Цель сервиса
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="font-black uppercase text-white leading-tight"
+                style={{
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
+                  letterSpacing: "-0.03em",
+                }}
+              >
+                Сформировать желание заказывать именно здесь снова и снова
+              </motion.h2>
+            </motion.div>
+          </div>
+        );
+      })()}
 
       {/* ── Ключевые боли ── */}
       <section className="bg-white border-b border-black">
