@@ -10,6 +10,7 @@ const links = [
   { href: "#promo", label: "Продвижение" },
   { href: "#audience", label: "Аудитория" },
   { href: "#service", label: "Сервис" },
+  { href: "#focus", label: "Цели бизнеса" },
 ];
 
 export default function Nav() {

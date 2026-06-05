@@ -278,10 +278,10 @@ export default function Service() {
       })()}
 
       {/* ── Ключевые боли ── */}
-      <section className="bg-white border-b border-black">
+      <section id="focus" className="bg-white border-b border-black">
         <div className="px-6 md:px-14 py-20 md:py-28">
           <SectionLabel
-            label="Фокус задач"
+            label="Цели бизнеса"
             title={<>Ключевые <Accent>боли</Accent> бизнеса</>}
             lead="На чём сосредоточить усилия маркетинговой команды в первую очередь."
           />
