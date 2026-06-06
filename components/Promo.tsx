@@ -440,12 +440,13 @@ function DiscountPrinciplesBlock() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
-  const principles = [
-    "Контролируемая маржинальность",
-    "Гибкость",
-    "Персонализация",
-    "Омниканальность",
-    "Аналитика",
+  // full: true = занимает 2 колонки на мобилке (col-span-2), 1 на десктопе
+  const principles: { text: string; full: boolean }[] = [
+    { text: "Контролируемая маржинальность", full: true  },
+    { text: "Гибкость",                      full: false },
+    { text: "Аналитика",                     full: false },
+    { text: "Персонализация",                full: true  },
+    { text: "Омниканальность",               full: true  },
   ];
 
   return (
@@ -471,31 +472,31 @@ function DiscountPrinciplesBlock() {
       </motion.h2>
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
-        {principles.map((principle, idx) => (
+        {principles.map(({ text, full }, idx) => (
           <motion.div
-            key={principle}
+            key={text}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="group cursor-default relative overflow-hidden bg-[#F8F8F8]
-                       last:col-span-2 md:last:col-span-1"
+            className={`group cursor-default relative overflow-hidden bg-[#F8F8F8]
+                        ${full ? "col-span-2 md:col-span-1" : "col-span-1 md:col-span-1"}`}
           >
             <div className="absolute inset-0 bg-black origin-left z-0
                            scale-x-0 group-hover:scale-x-100
                            transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
-            <div className="relative z-10 p-5 md:p-10 min-h-[110px] md:min-h-[160px] flex items-center">
+            <div className={`relative z-10 p-5 md:p-10 flex items-center
+                             ${full ? "min-h-[80px] md:min-h-[160px]" : "min-h-[110px] md:min-h-[160px]"}`}>
               <p className="font-black uppercase text-left text-black group-hover:text-white transition-colors duration-300 leading-tight"
                 lang="ru"
                 style={{
                   fontFamily: "Arial, sans-serif",
                   fontSize: "clamp(1.25rem, 2vw, 1.4rem)",
                   letterSpacing: "-0.02em",
-                  hyphens: "auto",
                   overflowWrap: "break-word",
                   wordBreak: "break-word",
                 }}
               >
-                {principle}
+                {text}
               </p>
             </div>
           </motion.div>

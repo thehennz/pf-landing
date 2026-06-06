@@ -48,7 +48,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute top-0 md:top-16 left-6 md:left-14 select-none pointer-events-none text-white/[0.12]"
+        className="absolute top-16 left-6 md:left-14 select-none pointer-events-none text-white/[0.12]"
         style={{
           fontFamily: "Arial, sans-serif",
           fontSize: "clamp(5rem, 15vw, 13rem)",
