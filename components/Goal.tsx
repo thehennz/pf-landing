@@ -90,7 +90,7 @@ export default function Goal() {
 
       {/* Водяной знак 2026 */}
       <div
-        className="absolute right-6 md:right-14 bottom-10 font-black
+        className="absolute right-6 md:right-14 bottom-[25%] font-black
                    text-white/[0.08] select-none pointer-events-none leading-none"
         style={{
           fontFamily: "Arial, sans-serif",
