@@ -193,10 +193,10 @@ export default function Channels() {
                     <h3
                       className="font-black uppercase leading-tight mb-2
                                  text-black group-hover:text-white
-                                 transition-colors duration-300"
+                                 transition-colors duration-300 break-words"
                       style={{
                         fontFamily: "Arial, sans-serif",
-                        fontSize: "clamp(1.5rem, 3vw, 2.6rem)",
+                        fontSize: "clamp(1.1rem, 3vw, 2.6rem)",
                         letterSpacing: "-0.025em",
                       }}
                     >

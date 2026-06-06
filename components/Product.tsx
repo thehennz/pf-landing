@@ -272,7 +272,7 @@ export default function Product() {
                 className={`${s.bg} group cursor-default hover:bg-black transition-colors duration-500 relative overflow-hidden min-h-[280px] md:min-h-[320px] flex flex-col justify-between p-8 md:p-12`}
               >
                 <div
-                  className={`absolute -bottom-4 -right-2 font-black leading-none pointer-events-none select-none transition-colors duration-500 ${s.dark ? "text-white/6 group-hover:text-white/8" : "text-black/5 group-hover:text-white/6"}`}
+                  className={`absolute -bottom-4 -right-2 font-black leading-none pointer-events-none select-none transition-colors duration-500 ${s.dark ? "text-white/[0.18] group-hover:text-white/[0.25]" : "text-black/5 group-hover:text-white/6"}`}
                   style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(8rem, 16vw, 14rem)" }}
                 >
                   {s.num}

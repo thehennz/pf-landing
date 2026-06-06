@@ -102,7 +102,7 @@ function ServiceItem({ title, bullets, delay }: { title: string; bullets: string
       <div className="absolute inset-0 bg-black origin-left z-0
                      scale-x-0 group-hover:scale-x-100
                      transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
-      <div className="relative z-10 px-8 md:px-10 pt-8 pb-10 flex flex-col min-h-[280px]">
+      <div className="relative z-10 px-8 md:px-10 pt-8 pb-10 flex flex-col">
         <h3
           className="font-black uppercase leading-tight mb-6
                      text-black group-hover:text-white transition-colors duration-300"
