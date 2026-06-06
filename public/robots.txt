@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Обновите URL когда переедете на постоянный домен
+Sitemap: https://fhs2.duckdns.org:8443/sitemap.xml
