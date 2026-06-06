@@ -48,7 +48,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute top-16 left-6 md:left-14 select-none pointer-events-none text-white/[0.12]"
+        className="absolute top-0 md:top-16 left-6 md:left-14 select-none pointer-events-none text-white/[0.12]"
         style={{
           fontFamily: "Arial, sans-serif",
           fontSize: "clamp(5rem, 15vw, 13rem)",
@@ -101,27 +101,64 @@ export default function Hero() {
           transition={{ delay: 0.9, duration: 0.6 }}
           className="flex flex-col gap-2"
         >
-          {[
+          {/* Mobile: 3+2+2 */}
+          {([
             [
-              { label: "Продукт",       href: "#product"  },
-              { label: "Цена",          href: "#price"    },
-              { label: "Каналы продаж", href: "#channels" },
-              { label: "Продвижение",   href: "#promo"    },
+              { label: "Продукт",       href: "#product",   d: 0 },
+              { label: "Цена",          href: "#price",     d: 1 },
+              { label: "Каналы продаж", href: "#channels",  d: 2 },
             ],
             [
-              { label: "Сервис",            href: "#service"  },
-              { label: "Целевая аудитория", href: "#audience" },
-              { label: "Цели бизнеса",      href: "#focus"    },
+              { label: "Продвижение",       href: "#promo",    d: 3 },
+              { label: "Сервис",            href: "#service",  d: 4 },
             ],
-          ].map((row, ri) => (
-            <div key={ri} className="flex flex-wrap items-center gap-2">
-              {row.map(({ label, href }, i) => (
+            [
+              { label: "Целевая аудитория", href: "#audience", d: 5 },
+              { label: "Цели бизнеса",      href: "#focus",    d: 6 },
+            ],
+          ] as { label: string; href: string; d: number }[][]).map((row, ri) => (
+            <div key={`m-${ri}`} className="flex items-center gap-2 md:hidden">
+              {row.map(({ label, href, d }) => (
                 <motion.a
                   key={label}
                   href={href}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.0 + (ri * 4 + i) * 0.07 }}
+                  transition={{ delay: 1.0 + d * 0.07 }}
+                  className="border border-white/15 text-white/50
+                             px-4 py-2 text-[10px] font-bold tracking-[0.18em] uppercase
+                             hover:border-white/35 hover:text-white/80
+                             transition-colors duration-300 cursor-pointer
+                             whitespace-nowrap inline-flex items-center"
+                >
+                  {label}
+                </motion.a>
+              ))}
+            </div>
+          ))}
+
+          {/* Desktop: 4+3 */}
+          {([
+            [
+              { label: "Продукт",       href: "#product",   d: 0 },
+              { label: "Цена",          href: "#price",     d: 1 },
+              { label: "Каналы продаж", href: "#channels",  d: 2 },
+              { label: "Продвижение",   href: "#promo",     d: 3 },
+            ],
+            [
+              { label: "Сервис",            href: "#service",  d: 4 },
+              { label: "Целевая аудитория", href: "#audience", d: 5 },
+              { label: "Цели бизнеса",      href: "#focus",    d: 6 },
+            ],
+          ] as { label: string; href: string; d: number }[][]).map((row, ri) => (
+            <div key={`d-${ri}`} className="hidden md:flex items-center gap-2">
+              {row.map(({ label, href, d }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0 + d * 0.07 }}
                   className="border border-white/15 text-white/50
                              px-4 py-2 text-[10px] font-bold tracking-[0.18em] uppercase
                              hover:border-white/35 hover:text-white/80

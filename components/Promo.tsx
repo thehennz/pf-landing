@@ -483,12 +483,16 @@ function DiscountPrinciplesBlock() {
             <div className="absolute inset-0 bg-black origin-left z-0
                            scale-x-0 group-hover:scale-x-100
                            transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
-            <div className="relative z-10 p-5 md:p-10 min-h-[110px] md:min-h-[160px] flex items-center justify-center">
-              <p className="font-black uppercase text-center text-black group-hover:text-white transition-colors duration-300 leading-tight"
+            <div className="relative z-10 p-5 md:p-10 min-h-[110px] md:min-h-[160px] flex items-center">
+              <p className="font-black uppercase text-left text-black group-hover:text-white transition-colors duration-300 leading-tight"
+                lang="ru"
                 style={{
                   fontFamily: "Arial, sans-serif",
                   fontSize: "clamp(1.25rem, 2vw, 1.4rem)",
                   letterSpacing: "-0.02em",
+                  hyphens: "auto",
+                  overflowWrap: "break-word",
+                  wordBreak: "break-word",
                 }}
               >
                 {principle}

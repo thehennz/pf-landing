@@ -163,7 +163,7 @@ function ChallengeRow({ num, title, text, delay }: {
       {/* Контент */}
       <div className="relative z-20 flex items-center gap-6
                      py-9 md:py-11 pr-6 md:pr-10
-                     pl-[9rem] sm:pl-[12rem] md:pl-[16rem] xl:pl-[20rem]">
+                     pl-[11rem] sm:pl-[12rem] md:pl-[16rem] xl:pl-[20rem]">
         <div className="flex-1 min-w-0">
           <h3
             className="font-black uppercase leading-tight mb-2
