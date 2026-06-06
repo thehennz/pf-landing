@@ -82,7 +82,7 @@ function PackagingBlock() {
             </motion.h2>
           </div>
         </FadeIn>
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div ref={ref} className="grid grid-cols-3 gap-3 md:gap-8">
           {packagingFeatures.map((f, i) => (
             <motion.div
               key={f.word}
@@ -94,15 +94,15 @@ function PackagingBlock() {
               <div className="absolute inset-0 bg-black origin-left z-0
                              scale-x-0 group-hover:scale-x-100
                              transition-transform duration-[450ms] ease-[cubic-bezier(.22,1,.36,1)]" />
-              <div className="relative z-10 flex flex-col p-8 md:p-10 min-h-[220px]">
+              <div className="relative z-10 flex flex-col p-4 md:p-10 min-h-[120px] md:min-h-[220px]">
                 <h3
-                  className="font-black uppercase leading-none mt-auto mb-3
+                  className="font-black uppercase leading-tight mt-auto mb-2
                              text-black group-hover:text-white transition-colors duration-300"
-                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.9rem, 4.5vw, 3.8rem)", letterSpacing: "-0.03em" }}
+                  style={{ fontFamily: "Arial, sans-serif", fontSize: "clamp(1.1rem, 4.5vw, 3.8rem)", letterSpacing: "-0.03em" }}
                 >
                   {f.word}
                 </h3>
-                <p className="text-sm text-black/45 group-hover:text-white/65 transition-colors duration-300">
+                <p className="text-xs md:text-sm text-black/45 group-hover:text-white/65 transition-colors duration-300">
                   {f.sub}
                 </p>
               </div>
