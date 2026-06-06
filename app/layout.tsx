@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-// ⚠️  Обновите SITE_URL когда переедете на постоянный домен
-const SITE_URL = "https://fhs2.duckdns.org:8443";
+const SITE_URL = "https://стратегия.пиццафабрика.рф";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
