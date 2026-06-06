@@ -82,14 +82,15 @@ function PackagingBlock() {
             </motion.h2>
           </div>
         </FadeIn>
-        <div ref={ref} className="grid grid-cols-3 gap-3 md:gap-8">
+        <div ref={ref} className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-8">
           {packagingFeatures.map((f, i) => (
             <motion.div
               key={f.word}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 + i * 0.12, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="group cursor-default relative overflow-hidden bg-[#F8F8F8]"
+              className={`group cursor-default relative overflow-hidden bg-[#F8F8F8]
+                          ${i === packagingFeatures.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
             >
               <div className="absolute inset-0 bg-black origin-left z-0
                              scale-x-0 group-hover:scale-x-100
